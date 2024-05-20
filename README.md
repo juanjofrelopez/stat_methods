@@ -8,6 +8,7 @@
 - [x] parse data into structs
 - [x] failed approach. read csv with py script
 - [ ] abstract loader
+- [ ] implement simple linear regression
 
 ## How to run
 
