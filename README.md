@@ -11,6 +11,15 @@
 
 ## How to run
 
+To generate the bin files from data.csv :
+
+```bash
+cd scripts
+python3 prepare_data.py
+```
+
+To compile and run main rutine:
+
 ```bash
 chmod u+x run.sh
 ./run.sh
