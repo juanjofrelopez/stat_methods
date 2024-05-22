@@ -7,7 +7,11 @@
 - [x] define structs
 - [x] parse data into structs
 - [x] failed approach. read csv with py script
-- [ ] abstract loader
+- [x] abstract loader
+- [ ] implement algebra library
+  - [ ] matrix transpose
+  - [ ] matrix multiplication
+  - [ ] matrix inverse
 - [ ] implement simple linear regression
 
 ## How to run
