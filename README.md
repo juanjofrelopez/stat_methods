@@ -8,11 +8,17 @@
 - [x] parse data into structs
 - [x] failed approach. read csv with py script
 - [x] abstract loader
-- [ ] implement algebra library
+- [ ] implement algebra library algebra.c
   - [ ] matrix transpose
   - [ ] matrix multiplication
   - [ ] matrix inverse
-- [ ] implement simple linear regression
+- [ ] data toolset tools.c
+  - [ ] mean
+  - [ ] median
+  - [ ] std deviation
+  - [ ] variance
+- [ ] implement simple linear regression 
+- [ ] implement multiple linear regression
 
 ## How to run
 
