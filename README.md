@@ -17,6 +17,7 @@
   - [ ] median
   - [ ] std deviation
   - [ ] variance
+  - [ ] correlation -> to construct a correlation matrix
 - [ ] implement simple linear regression 
 - [ ] implement multiple linear regression
 
