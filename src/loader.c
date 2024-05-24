@@ -10,14 +10,14 @@ void print_values(Dataframe *df)
 {
   for (int i = 0; i < df->p; i++)
   {
-    printf("%s ", df->data[i].name);
+    printf("%s ", df->vars[i].name);
   }
   printf("\n");
   for (int i = 0; i < df->n; i++)
   {
     for (int j = 0; j < df->p; j++)
     {
-      printf("%f ", df->data[j].data[i]);
+      printf("%f ", df->vars[j].data[i]);
     }
     printf("\n");
   }
@@ -30,10 +30,10 @@ void df_info(Dataframe *df)
   printf("Number of predictors:  %i\n", df->p);
   printf("Number of variables:   %i\n", df->n);
   printf("Size of Var:           %li\n", sizeof(Var));
-  printf("Size of df.data:       %li\n", sizeof(df->data));
-  printf("Size of data:          %li\n", sizeof(df->data[0].data));
-  printf("pointer to var arr:    %p\n", df->data);
-  printf("ptr to 1st var data:   %p\n", df->data[0].data);
+  printf("Size of df.data:       %li\n", sizeof(df->vars));
+  printf("Size of data:          %li\n", sizeof(df->vars[0].data));
+  printf("pointer to var arr:    %p\n", df->vars);
+  printf("ptr to 1st var data:   %p\n", df->vars[0].data);
   printf("-------------------------------------------\n");
 }
 
@@ -63,8 +63,8 @@ void count_np(FILE *fp, Dataframe *df)
 
 void alloc_predictors(Dataframe *df)
 {
-  df->data = malloc(df->p * sizeof(Var));
-  if (df->data == NULL)
+  df->vars = malloc(df->p * sizeof(Var));
+  if (df->vars == NULL)
   {
     printf("Error allocating memory for predictors\n");
     exit(1);
@@ -75,8 +75,8 @@ void alloc_data(Dataframe *df)
 {
   for (int i = 0; i < df->p; i++)
   {
-    df->data[i].data = (float *)malloc(df->n * sizeof(float));
-    if (df->data[i].data == NULL)
+    df->vars[i].data = (float *)malloc(df->n * sizeof(float));
+    if (df->vars[i].data == NULL)
     {
       printf("Error allocating memory for data in predictor %d\n", i);
       exit(1);
@@ -97,7 +97,7 @@ void fill_data(FILE *fp, Dataframe *df)
   while (tok != NULL)
   {
     // @TODO: remove \n from tok
-    strcpy(df->data[p].name, tok);
+    strcpy(df->vars[p].name, tok);
     tok = strtok(NULL, ",");
     p++;
   }
@@ -108,7 +108,7 @@ void fill_data(FILE *fp, Dataframe *df)
     tok = strtok(s, ",");
     while (tok != NULL)
     {
-      df->data[p].data[n] = atof(tok);
+      df->vars[p].data[n] = atof(tok);
       tok = strtok(NULL, ",");
       p++;
     }

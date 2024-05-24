@@ -11,7 +11,7 @@ typedef struct Var
 typedef struct Dataframe
 {
   char *name;
-  Var *data;
+  Var *vars;
   int p;
   int n;
 } Dataframe;
