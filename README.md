@@ -11,18 +11,24 @@
 - [x] success
 - [x] Define matrix structs
 - [x] implement matrix loaders
-- [ ] implement algebra library algebra.c
-  - [ ] matrix multiplication
+- [ ] implement linear algebra toolset
+  - [x] matrix multiplication
     - [x] first draft
-    - [ ] modify this method to output a pointer to newly created matrix called C
-  - [ ] matrix transpose
+    - [x] modify this method to output a pointer to newly created matrix called C
+    - [x] new approach: just use pointer to floats
+  - [x] matrix transpose
+  - [ ] Linear equiation system solver
+    - [x] lu decomposition
+    - [ ] linear system solver
   - [ ] matrix inverse
-- [ ] data toolset tools.c
+- [ ] implement statistic toolset
+
   - [ ] mean
   - [ ] median
   - [ ] std deviation
   - [ ] variance
   - [ ] correlation -> to construct a correlation matrix
+
 - [ ] investigate gnuplot for data viz
 - [ ] implement simple linear regression
 - [ ] implement multiple linear regression
@@ -45,8 +51,24 @@ chmod u+x run.sh
 
 ## Cool articles
 
+### C codebase organitzation
+
 https://www.lucavall.in/blog/how-to-structure-c-projects-my-experience-best-practices
 https://www.lucavall.in/blog/crafting-clean-maintainable-understandable-makefile-for-c-project
+
+### Linear algebra
+
+#### LU Decomposition
+
+https://www.cl.cam.ac.uk/teaching/1314/NumMethods/supporting/mcmaster-kiruba-ludecomp.pdf
+
+#### Linear system solving
+
+https://courses.physics.illinois.edu/cs357/sp2020/notes/ref-9-linsys.html
+
+### Numerical methods book
+
+- Steven Chapra and Raymond Canale - Numerical Methods for Engineers.
 
 # Algebra
 
@@ -72,3 +94,7 @@ The m-by-n matrix will be:
 so first you allocate memory for n pointers
 then for each space you create a pointer that has allocated m floats
 then copy the contents from the data pointer in the df to the allocated pointer in the matrix.
+
+# Wrong approach
+
+Changed representation of matrices from `float**` to `float*` in a row oriented single chunk of memory.

@@ -12,8 +12,8 @@ typedef struct Dataframe
 {
   char *name;
   Var *vars;
-  int p;
-  int n;
+  int p; // number of predictors (columns)
+  int n; // number of observations (rows)
 } Dataframe;
 
 Dataframe *load_csv(char *filename);

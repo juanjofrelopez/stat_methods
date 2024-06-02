@@ -12,12 +12,20 @@ typedef struct TwoDMatrix
   int n; // cols
 } TwoDMatrix;
 
-void matrix_from_df(Dataframe *df, TwoDMatrix *mat);
+// void matrix_from_df(Dataframe *df, TwoDMatrix *mat);
 
-void matrix_multiplication(TwoDMatrix a, TwoDMatrix b, TwoDMatrix *c);
+// void matrix_multiplication(TwoDMatrix a, TwoDMatrix b, TwoDMatrix *c);
 
-void allocate_matrix(TwoDMatrix *mat);
+// void allocate_matrix(TwoDMatrix *mat);
 
-void plot_matrix(TwoDMatrix mat);
+// void plot_matrix(TwoDMatrix mat);
+
+void matmul(float *a, float *b, float *c, int am, int an, int bm, int bn);
+
+void matplot(float *a, int m, int n, const char *name);
+
+void mattransp(float *a, float *b, int m, int n);
+
+void ludecomp(float *a, int m, float *l, float *u);
 
 #endif
