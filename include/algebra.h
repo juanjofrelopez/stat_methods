@@ -28,4 +28,8 @@ void mattransp(float *a, float *b, int m, int n);
 
 void ludecomp(float *a, int m, float *l, float *u);
 
+void linsolve(float *a, float *b, float *x, int m);
+
+void matinit(float *a, int m, int n, const float val);
+
 #endif

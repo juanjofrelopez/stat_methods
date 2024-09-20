@@ -27,15 +27,30 @@ int main(int argc, char *argv[])
   // mattransp(a, c, 3, 3);
   // matplot(c, 3, 3);
 
-  int m = 3;
-  float a[9] = {2, -1, -2, -4, 6, 3, -4, -2, 8};
-  float l[m * m];
-  float u[m * m];
-  matplot(a, m, m, "A");
-  ludecomp(a, m, l, u);
+  // int m = 3;
+  // float a[9] = {2, -1, -2, -4, 6, 3, -4, -2, 8};
+  // float l[m * m];
+  // float u[m * m];
+  // matplot(a, m, m, "A");
+  // ludecomp(a, m, l, u);
+  // matplot(l, m, m, "L");
+  // matplot(u, m, m, "U");
 
-  matplot(l, m, m, "L");
-  matplot(u, m, m, "U");
+  int m = 2;
+  // float a[9] = {2, 4, 6, 4, 5, 6, 3, 1, -2};
+  float a[4] = {1, 1, 2, -3};
+
+  // float b[3] = {18, 24, 4};
+  float b[2] = {7, -6};
+
+  float x[m];
+  matinit(x, m, 1, 0.0);
+  matplot(a, m, m, "A");
+  matplot(b, m, 1, "B");
+
+  linsolve(a, b, x, m);
+  matplot(x, m, 1, "X");
+  // ans should be: (4,-2,3)
 
   return 0;
 }

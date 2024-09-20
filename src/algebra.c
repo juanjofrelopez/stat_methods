@@ -204,3 +204,97 @@ void ludecomp(float *a, int m, float *l, float *u)
     }
   }
 }
+
+/**
+ * l x = b
+ */
+void fwdsubs(float *l, float *b, int m, float *x)
+{
+  // x[0] = b[0] / l[idx(0, 0, m, m)];
+  // for (int i = 1; i < m; i++)
+  // {
+  //   float sum = 0;
+  //   for (int j = 0; j < i - 1; j++)
+  //   {
+  //     sum += (l[idx(i, j, m, m)] * x[j]);
+  //   }
+  //   float temp = b[i] - sum;
+  //   x[i] = temp / l[idx(i, i, m, m)];
+  // }
+
+  // memcpy(x, b, m * sizeof(float));
+  // for (int i = 0; i < m; i++)
+  // {
+  //   for (int j = 0; j < i - 1; j++)
+  //   {
+  //     x[i] = x[i] - l[idx(i, j, m, m)] * x[j];
+  //   }
+  //   x[i] = x[i] / l[idx(i, i, m, m)];
+  // }
+
+  for (int i = 0; i < m; i++)
+  {
+    float sum = b[i];
+    for (int j = 0; j < i - 1; j++)
+    {
+      sum = sum - (l[idx(i, j, m, m)] * b[j]);
+    }
+    x[i] = sum / l[idx(i, i, m, m)];
+  }
+
+  matplot(x, m, 1, "fwd X");
+}
+
+/**
+ * u x = b
+ */
+void backsubs(float *u, float *b, int m, float *x)
+{
+  // x[m] = b[m] / u[idx(m, m, m, m)];
+  // for (int i = m - 1; i >= 0; i--)
+  // {
+  //   float sum = 0;
+  //   for (int j = i + 1; j < m; j++)
+  //   {
+  //     sum += (u[idx(i, j, m, m)] * x[j]);
+  //   }
+  //   float temp = b[i] - sum;
+  //   x[i] = temp / u[idx(i, i, m, m)];
+  // }
+
+  for (int i = m - 1; i > -1; i--)
+  {
+    float temp = b[i];
+    for (int j = i + 1; j < m; j++)
+    {
+      temp -= u[idx(i, j, m, m)] * x[j];
+    }
+    x[i] = temp / u[idx(i, i, m, m)];
+  }
+  matplot(x, m, 1, "bwd X");
+}
+
+/**
+ * SOLVE LINEAR EQUATION SYSTEM
+ * ax=b
+ * a=lu
+ * lux=b
+ *
+ * ld=b
+ * ux=d
+ */
+void linsolve(float *a, float *b, float *x, int m)
+{
+  float l[m * m];
+  float u[m * m];
+  ludecomp(a, m, l, u);
+
+  matplot(l, m, m, "L");
+  matplot(u, m, m, "U");
+
+  float d[m];
+  matinit(d, m, 1, 0.0);
+
+  fwdsubs(l, b, m, d);
+  backsubs(u, d, m, x);
+}
